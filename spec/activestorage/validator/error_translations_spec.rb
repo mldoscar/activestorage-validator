@@ -2,9 +2,10 @@ RSpec.describe ActiveRecord::Validations::BlobValidator do
   after { User.clear_validators! }
 
   describe 'with size_range option' do
+    let(:example_range) { 700.kilobytes..1.megabyte }
     before do
-      User.validates :file,  blob: { size_range: 1..1.megabyte }
-      User.validates :files, blob: { size_range: 1..1.megabyte }
+      User.validates :file,  blob: { size_range: example_range }
+      User.validates :files, blob: { size_range: example_range }
     end
 
     it "should translate the validation error according to it's locale" do
@@ -12,12 +13,20 @@ RSpec.describe ActiveRecord::Validations::BlobValidator do
       available_locales.each do |locale|
         I18n.with_locale locale.to_sym do
           # Create new resource and validate it
-          user = User.new(file: create_file_blob(filename: '1_4MB.jpg'), files: [create_file_blob(filename: '1_4MB.jpg')])
+          user = User.new(file: create_file_blob(filename: '600KB.jpg'), files: [create_file_blob(filename: '1_4MB.jpg')])
           user.validate
 
           # Run expectation
-          expect(user.errors.messages[:file]).to  include(I18n.t('activerecord.errors.messages.max_size_error'))
-          expect(user.errors.messages[:files]).to include(I18n.t('activerecord.errors.messages.max_size_error'))
+          # Translation: min_size_error
+          expect(
+            user.errors.messages[:file]
+          ).to include I18n.t('activerecord.errors.messages.min_size_error', min_size: ActiveSupport::NumberHelper.number_to_human_size(example_range.min))
+
+          # Translation: max_size_error 
+          expect(
+            user.errors.messages[:files]
+          ).to include I18n.t('activerecord.errors.messages.max_size_error', max_size: ActiveSupport::NumberHelper.number_to_human_size(example_range.max))
+
         end
       end
     end
