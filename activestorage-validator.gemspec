@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
-  spec.files         = Dir["{app,lib,rails}/**/*", "CODE_OF_CONDUCT.md", "LICENSE.txt", "Rakefile", "README.md"]
+  spec.files         = Dir["{config,lib,rails}/**/*", "CODE_OF_CONDUCT.md", "LICENSE.txt", "Rakefile", "README.md"]
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
