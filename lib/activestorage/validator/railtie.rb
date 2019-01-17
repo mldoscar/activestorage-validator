@@ -7,7 +7,7 @@ module ActiveStorage
           pattern = pattern_from app.config.i18n.available_locales
   
           # Add locales from default folder
-          add("app/config/locales/#{pattern}.yml")
+          add("config/locales/#{pattern}.yml")
         end
       end
   

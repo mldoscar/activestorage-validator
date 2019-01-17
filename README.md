@@ -38,8 +38,9 @@ en:
   activerecord:
     errors:
       messages:
-        content_type:   "is not a valid file format"
-        max_size_error: "is not within valid size range"
+        content_type: "is not a valid file format"
+        min_size_error: "File size should be greater than %{min_size}"
+        max_size_error: "File size should be less than %{max_size}"
         # ...and so on...
 ```
 
@@ -58,7 +59,7 @@ class User < ApplicationRecord
     content_type: ['image/png', 'image/jpg', 'image/jpeg'],
 
     ## File size validation (Range)
-    size_range: 1..5.megabytes,
+    size_range: 1.byte..5.megabytes,
 
     ## Purge file validation if file is not valid
     purge: true

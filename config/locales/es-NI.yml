@@ -1,0 +1,7 @@
+es-NI:
+  activerecord:
+    errors:
+      messages:
+        content_type: "no es un tipo de archivo válido"
+        min_size_error: "el tamaño de archivo debe ser mayor que %{min_size}"
+        max_size_error: "el tamaño de archivo debe ser menor que %{max_size}"
