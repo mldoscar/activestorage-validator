@@ -7,11 +7,11 @@ ActiveStorage blob validator.
 Add this line to your application's Gemfile:
 
 ```ruby
-# Version pending to be uploaded to RubyGems.org
-# gem 'activestorage-validator', '~> 0.1.1'
-
-# From this fork 'mldoscar/activestorage-validator'
+# From this fork
 gem 'activestorage-validator', git: 'https://github.com/mldoscar/activestorage-validator', branch: 'master'
+
+# Original repository version (it may not have some enhancements from this forked repository):
+gem 'activestorage-validator', '~> 0.1.1'
 ```
 
 And then execute:
@@ -20,15 +20,15 @@ And then execute:
 
 Or install it yourself as:
 
-    $ # Version pending to be uploaded to RubyGems.org
-    $ # gem install activestorage-validator -v '~> 0.1.1'
+    $ # Original repository version (it may not have some enhancements from this forked repository):
+    $ gem install activestorage-validator -v '~> 0.1.1'
 
 ## Internationalization (I18n)
 
 There's no need to make any additional configuration into your Rails application to make the translations work. It's enough to configure `I18n.default_locale` or `I18n.available_locales` in your application. The following translation files are available at this moment:
 
 ```
-en, es, es-NI
+en, es, es-NI, ja
 ```
 
 **If your desired locale is not included yet**, you can temporally create a translation file `*.yml` inside your application's locales folder `app/config/locales/`. The locale structure goes like this:
